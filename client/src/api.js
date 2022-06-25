@@ -1,5 +1,5 @@
 import axios from "axios";
-let url = "http://localhost:5050/user";
+let url = "http://localhost:3000/user";
 if (process.env.NODE_ENV === "production") {
   url = "/user";
 }
