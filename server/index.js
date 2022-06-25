@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 import { app } from "./app.js";
 import dotenv from "dotenv";
 dotenv.config();
-const URL = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.cdkzy.mongodb.net/bankAPI?retryWrites=true&w=majority`;
+const old = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.cdkzy.mongodb.net/bankAPI?retryWrites=true&w=majority`;
+const URL = `${process.env.MONGODB_URI}`;
 
 mongoose.connect(URL, (error, mongoDBInstance) => {
   if (error) {
