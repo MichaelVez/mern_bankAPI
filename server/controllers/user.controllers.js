@@ -59,3 +59,12 @@ export const deposit = async (req, res) => {
     res.status(400).send("error " + error.message);
   }
 };
+export const deleteUser = async (req, res) => {
+  try {
+    const newUserInst = await User.findByIdAndDelete(req.params.id);
+    res.status(200);
+    res.send(newUserInst);
+  } catch (error) {
+    res.status(400).send("error " + error.message);
+  }
+};

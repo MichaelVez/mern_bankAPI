@@ -8,9 +8,9 @@ import Deposit from "./components/Deposit";
 import Withdraw from "./components/Withdraw";
 function App() {
   const [users, setUsers] = useState([]);
-  useEffect(() => {
-    loadAllUsers();
-  }, []);
+  // useEffect(() => {
+  //   loadAllUsers();
+  // }, []);
   const loadAllUsers = async () => {
     try {
       const { data } = await userAPI.get("/getAll");
@@ -24,7 +24,7 @@ function App() {
       users.map((user) => {
         return (
           <div key={user._id}>
-            <User key={user._id} user={user} />
+            <User loadAllUsers={loadAllUsers} key={user._id} user={user} />
           </div>
         );
       })
