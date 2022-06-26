@@ -1,10 +1,16 @@
 import "./App.css";
 import { userAPI } from "./api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import User from "./components/User";
 import NewUser from "./components/NewUser";
+import GetId from "./components/GetId";
+import Deposit from "./components/Deposit";
+import Withdraw from "./components/Withdraw";
 function App() {
   const [users, setUsers] = useState([]);
+  useEffect(() => {
+    loadAllUsers();
+  }, []);
   const loadAllUsers = async () => {
     try {
       const { data } = await userAPI.get("/getAll");
@@ -25,11 +31,14 @@ function App() {
     );
   };
   return (
-    <div>
+    <div className='App'>
       <h1>Bank API </h1>
-      <button onClick={loadAllUsers}>Fetch all</button>
-      <div>{users}</div>
       <NewUser loadAllUsers={loadAllUsers} />
+      <GetId mapUsers={mapUsers} />
+      <Withdraw loadAllUsers={loadAllUsers} />
+      <Deposit loadAllUsers={loadAllUsers} />
+      <button onClick={loadAllUsers}>Fetch all</button>
+      <div className='usersDisplay'>{users}</div>
     </div>
   );
 }

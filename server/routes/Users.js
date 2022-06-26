@@ -9,8 +9,8 @@ import {
 } from "../controllers/user.controllers.js";
 
 userRouter.get("/getAll", getAll);
+userRouter.post("/newUser", newUser);
 userRouter.get("/getID/:id", getID);
 userRouter.put("/withdraw", withdraw);
 userRouter.put("/deposit", deposit);
-userRouter.post("/newUser", newUser);
 export { userRouter };

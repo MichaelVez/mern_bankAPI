@@ -1,28 +1,25 @@
-import axios from "axios";
 import React from "react";
 import { useState } from "react";
-import { User } from "../";
 import { userAPI } from "../api";
 import "./newUser.css";
 export default function NewUser({ loadAllUsers }) {
   const [form, setForm] = useState({
     name: "",
-    passportID: 0,
-    cash: 0,
-    credit: 0,
+    passportID: "",
+    cash: "",
+    credit: "",
   });
   const submit = async (e) => {
     e.preventDefault();
     try {
       console.log(form);
       // userAPI.post("/newUser", form);
-      const data = await userAPI.post("/newUser", form);
-      console.log(data);
+      await userAPI.post("/newUser", form);
       setForm({
         name: "",
         passportID: "",
-        cash: 0,
-        credit: 0,
+        cash: "",
+        credit: "",
       });
       loadAllUsers();
     } catch (e) {
@@ -39,24 +36,28 @@ export default function NewUser({ loadAllUsers }) {
     <div className='newUser'>
       <form onSubmit={submit}>
         <input
+          value={form.name}
           name='name'
           type='text'
           onChange={onChangeFunc}
           placeholder='Full name'
         />
         <input
+          value={form.passportID}
           name='passportID'
           type='number'
           onChange={onChangeFunc}
           placeholder='passport ID'
         />
         <input
+          value={form.cash}
           name='cash'
           type='number'
           onChange={onChangeFunc}
           placeholder='Cash'
         />
         <input
+          value={form.credit}
           name='credit'
           type='number'
           onChange={onChangeFunc}
